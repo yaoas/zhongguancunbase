@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pm.background.admin.sys.dao.UserMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.pm.background.admin.sys.entity.User" id="BaseResultMap">
+        <result property="id" column="id"/>
+        <result property="avatar" column="avatar"/>
+        <result property="account" column="account"/>
+        <result property="password" column="password"/>
+        <result property="salt" column="salt"/>
+        <result property="name" column="name"/>
+        <result property="birthday" column="birthday"/>
+        <result property="sex" column="sex"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="status" column="status"/>
+        <result property="delFlag" column="delFlag"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+               a.id,
+               a.avatar,
+               a.account,
+               a.name,
+               a.birthday,
+               a.sex,
+               a.email,
+               a.phone,
+               a.dept_id as deptId,
+               a.status,
+               a.create_time as createTime,
+               a.update_time as updateTime
+    	</sql>
+    <update id="updateUserMoney">
+        update  sys_user set  money_element=money_element+(#{moneyElement}) where id=#{id}
+    </update>
+
+
+    <select id="getRoleIdsById" resultType="long">
+        select role_id from sys_user_role where user_id = #{userId} and del_flag = 0
+    </select>
+
+    <select id="getUserByRoleId" resultType="com.pm.background.admin.sys.entity.User">
+        SELECT * FROM sys_user WHERE id in (SELECT user_id FROM sys_user_role WHERE role_id = #{roleId}) and  del_flag = 0
+    </select>
+
+    <select id="byAccountGetId" resultType="com.pm.background.admin.sys.entity.User">
+        select *  from sys_user where account = #{account} and  del_flag = 0
+    </select>
+    <select id="byNameGetUser" resultType="com.pm.background.admin.sys.entity.User">
+        select * from sys_user where name = #{name} and  del_flag = 0
+    </select>
+    <select id="selectUser" resultType="com.pm.background.admin.sys.entity.User">
+        select *  from sys_user where id = #{id} and  del_flag = 0
+    </select>
+
+    <select id="queryAllPerms" resultType="string">
+		select m.perms from sys_user_role ur
+			LEFT JOIN sys_role_menu rm on ur.role_id = rm.role_id and rm.del_flag=0
+			LEFT JOIN sys_menu m on rm.menu_id = m.id  and m.del_flag=0
+		where ur.user_id = #{userId} and ur.del_flag=0
+	</select>
+
+</mapper>
