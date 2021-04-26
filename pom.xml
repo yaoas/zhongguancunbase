@@ -35,7 +35,7 @@
 		<mybatis-plus-boot-starter.version>3.3.0</mybatis-plus-boot-starter.version>
 
 		<commons-lang3.version>3.3.2</commons-lang3.version>
-		<commons-io-version>2.5</commons-io-version>
+		<commons-io-version>2.7</commons-io-version>
 		<jwt.version>0.9.0</jwt.version>
 		<flywaydb.version>5.1.4</flywaydb.version>
 		<shiro.version>1.4.0</shiro.version>
