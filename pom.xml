@@ -28,7 +28,7 @@
 		<beam.web.version>0.0.1-SNAPSHOT</beam.web.version>
 
 		<swagger.version>2.9.2</swagger.version>
-		<fastjson.version>1.2.47</fastjson.version>
+		<fastjson.version>1.2.83</fastjson.version>
 		<ehcache.version>3.3.1</ehcache.version>
 		<ehcache.core.version>2.6.11</ehcache.core.version>
 		<mysql-connector-java.version>8.0.11</mysql-connector-java.version>
